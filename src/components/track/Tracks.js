@@ -8,7 +8,9 @@ export default class Tracks extends Component {
       <Consumer>
         {(value) => {
           const { track_list, heading } = value;
-          if (track_list.length == 0 || typeof track_list == "undefined") {
+          console.log(value);
+
+          if (typeof track_list == "undefined" || track_list.length == 0) {
             return <Spinner></Spinner>;
           } else
             return (

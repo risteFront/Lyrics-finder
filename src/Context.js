@@ -1,11 +1,26 @@
 import React, { Component } from "react";
 
-const Context = React.createContext();
+export const Context = React.createContext();
+
+const reducer = (state, action) => {
+  console.log(state);
+  switch (action.type) {
+    case "SEARCH_TRACK":
+      return {
+        ...state,
+        track_list: action.payload,
+        heading: "Search Result",
+      };
+    default:
+      return state;
+  }
+};
 
 export class Provider extends Component {
   state = {
     track_list: [],
     heading: "Top 10 Track",
+    dispatch: (action) => this.setState((state) => reducer(state, action)),
   };
   componentDidMount() {
     fetch(
